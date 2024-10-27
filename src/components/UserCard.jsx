@@ -5,7 +5,7 @@ const UserCard = ({user}) => {
   return (
     <div className=''>
      <div className="card bg-base-300 w-96 shadow-xl">
-        <figure>
+        <figure className=''>
             <img 
             className=' h-auto'
             src={photoUrl ? photoUrl :"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}

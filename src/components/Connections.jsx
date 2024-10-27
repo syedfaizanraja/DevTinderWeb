@@ -29,7 +29,7 @@ const Connections = () => {
             console.log(con);
             
          return (
-        <div className=' flex justify-center ' key={con._id}>
+        <div className=' flex justify-center items-center' key={con._id}>
          <div className="card bg-base-300 w-96 shadow-xl   my-4 " >
             <div className="card-body flex  " key={con._id}>
             <div className="avatar">
@@ -48,7 +48,7 @@ const Connections = () => {
           )
         })}
     </div>
-  )
+  );
 }
 
 export default Connections;

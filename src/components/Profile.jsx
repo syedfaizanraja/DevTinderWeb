@@ -6,7 +6,7 @@ const Profile = () => {
     const profileData = useSelector( (store) => store.user);
   return (
    profileData && ( <div className='my-20 flex justify-center h-[100%] '>
-        <div className="card card-side bg-base-300 shadow-xl  w-[50%] mx-4">
+        <div className="card card-side bg-base-300 shadow-xl  w-[70%] mx-4">
             <figure>
                 <img
                 className='w-40 h-[100%]'
