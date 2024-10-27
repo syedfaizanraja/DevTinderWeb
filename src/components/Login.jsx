@@ -10,6 +10,7 @@ const Login = () => {
 
     const [emailId, setEmailId] = useState("Hafsha@gamil.com");
     const [password, setPassword] = useState("Hafsha@123");
+    const [error, setError] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,13 +26,14 @@ const Login = () => {
         return navigate("/");
     }
     catch(err){
+        setError(err?.response?.data);
         console.log("Error :", err);
     }
 
     }
 
   return (
-    <div className="flex justify-center my-7">
+    <div className="flex justify-center my-7 ">
         <div className="card card-side bg-base-300 shadow-xl ">
             <figure>
                 <img className="h-[100%]"
@@ -69,13 +71,17 @@ const Login = () => {
                         d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                         clipRule="evenodd" />
                     </svg>
-                    <input type="password" className="grow" value={password} onChange={(e) => setPassword(e.target.value)} 
+                    <input type="password" className="grow"   value={password} onChange={(e) => setPassword(e.target.value)} 
 
                     />
                     </label>
                 </div>
+                <p className="text-red-500 py-2">{error}</p>
                 <div className="card-actions justify-center">
-                <button className="btn btn-primary px-6 py-2" onClick={handleLogin}>Login</button>
+                
+        
+                <button className="btn btn-primary px-6 py-2 " onClick={handleLogin} >Login</button>
+              
                 </div>
             </div>
         </div>

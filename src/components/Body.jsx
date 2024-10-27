@@ -30,6 +30,7 @@ const Body = () => {
   };
 
   useEffect( ()=>{
+   
     fetchProfile();
   }, [])
 
