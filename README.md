@@ -22,5 +22,8 @@
 -- Navbar updates with user name 
 -- Created a components floder and move all our components into components floder
 -- Created a constants.js file to provide contants data.
+-- Should not able to access other pages if token is not present. redirect to Login page.
+-- Logout functionality
+-- Profile page
 
 
