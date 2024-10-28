@@ -29,4 +29,6 @@
 -- Created a Connection page.
 -- Created Connection Request Page 
 -- Created Accept or Reject functionlality.
+-- Created send/ignore functionlity.
+-- Created a Signup Form and feed component.
 

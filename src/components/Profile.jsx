@@ -17,7 +17,7 @@ const Profile = () => {
                 <h1 className="card-title">{profileData.firstName + " " + profileData.lastName}</h1>
                 <p>{profileData.description}</p>
                 {profileData.age && profileData.gender && profileData.skills 
-                && (<><p>{profileData.age}</p><p>{profileData.gender}</p><p>{profileData.skills}</p></> )}
+                && (<>  <p> {profileData.age + ", " + profileData.gender}</p><p>{profileData.skills}</p></> )}
                 <div className="card-actions justify-center">
                 <Link to= "/editProfile"> 
                 <button className="btn btn-primary ">

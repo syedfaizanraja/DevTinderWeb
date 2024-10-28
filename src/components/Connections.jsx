@@ -21,7 +21,7 @@ const Connections = () => {
         getConnections();
     }, []);
     if(!connection)  return;
-    if(connection.length === 0) return <h1>No connections to show</h1>
+    if(connection.length === 0) return <h1 className='text-2xl text-center my-3'>No connections to show</h1>
   return (
     <div className=' text-center ' >
         <h1 className=' text-2xl my-3'>Connections</h1>

@@ -8,8 +8,11 @@ import { BASE_URL } from "../utils/contansts";
 
 const Login = () => {
 
-    const [emailId, setEmailId] = useState("Hafsha@gamil.com");
-    const [password, setPassword] = useState("Hafsha@123");
+    const [emailId, setEmailId] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName , setFirstName] = useState("");
+    const [lastName , setLastName] = useState("");
+    const [isLoginForm , setIsLoginForm] = useState(true);
     const [error, setError] = useState("");
 
     const dispatch = useDispatch();
@@ -32,6 +35,24 @@ const Login = () => {
 
     }
 
+    const handleSignUp = async () => {
+        try{
+            const res = await axios.post(BASE_URL + "/signup", {
+                firstName,
+                lastName,
+                emailId,
+                password,
+            }, {
+                withCredentials:true
+            });
+            dispatch(addUser(res.data.data));
+            return navigate("/profile");
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
+
   return (
     <div className="flex justify-center my-7 ">
         <div className="card card-side bg-base-300 shadow-xl ">
@@ -41,9 +62,32 @@ const Login = () => {
                 alt="Movie" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">Login</h2>
+                <h2 className="card-title">{isLoginForm ? "Login" :"SignUp"}</h2>
                 <div className="">
-                  
+                    {  !isLoginForm && <><label className="input input-bordered flex items-center gap-2 m-3">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            className="h-4 w-4 opacity-70">
+                            <path
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                        </svg>
+                        <input type="text" className="grow" value={firstName} placeholder="FirstName"
+                        onChange={ (e) => setFirstName(e.target.value)} />
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 m-3">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            className="h-4 w-4 opacity-70">
+                            <path
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                        </svg>
+                        <input type="text" className="grow" value={lastName} placeholder="LastName" 
+                        onChange={(e) => setLastName(e.target.value)}/>
+                    </label> </>}
                     <label className="input input-bordered flex items-center gap-2 m-3">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +122,9 @@ const Login = () => {
                 </div>
                 <p className="text-red-500 py-2">{error}</p>
                 <div className="card-actions justify-center">
-                
-        
-                <button className="btn btn-primary px-6 py-2 " onClick={handleLogin} >Login</button>
-              
+                    <button className="btn btn-primary px-6 py-2 " onClick={ isLoginForm ? handleLogin : handleSignUp} >{isLoginForm ? "Login" :"SignUp"}</button>
                 </div>
+                <p className=" cursor-pointer my-2" onClick={() => setIsLoginForm( (value) => !value)}>{isLoginForm ? "New User? SignUp Here" : "Existing User? Login Here"}</p>
             </div>
         </div>
 

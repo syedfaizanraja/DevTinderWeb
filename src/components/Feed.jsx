@@ -29,7 +29,8 @@ const Feed = () => {
       fetchFeed();
     }, []);
 
-
+    if(!feedData) return;
+    if(feedData.length <= 0) return <h1 className=" text-center text-2xl my-3">No Feed to Show</h1>
   return (
     feedData && (
     <div className="flex justify-center my-10">
