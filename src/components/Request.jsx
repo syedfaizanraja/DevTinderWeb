@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/contansts';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRequests } from '../utils/requestSlice';
+import { addRequests, removeRequest } from '../utils/requestSlice';
 
 const Request = () => {
 
@@ -19,11 +19,21 @@ const Request = () => {
         }
     };
 
+    const reviewRequest = async (status, fromUserId_id, _id) =>{
+        try{
+            const res = await axios.post(BASE_URL + "/request/review/" + status + "/" + fromUserId_id, {}, {withCredentials:true});
+            dispatch(removeRequest(_id));
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
+
     useEffect( () => {
         getRequests();
     }, []);
 if(!requests)  return;
-if(requests.length === 0) return <h1>No Connection Request found</h1>
+if(requests.length === 0) return <h1 className=' text-center text-2xl my-3'>No Connection Request found</h1>
 return (
     <div className=' text-center ' >
         <h1 className=' text-2xl my-3'>Connection Requests</h1>
@@ -41,8 +51,8 @@ return (
               <h2 className="card-title">{req?.fromUserId?.firstName + " " + req?.fromUserId?.lastName}</h2>
               <p className=' text-left'>{req?.fromUserId?.description}</p>
               <div className="card-actions justify-start">
-                <button className="btn btn-primary ">Reject </button>
-                <button className="btn btn-primary ">Accept</button>
+                <button className="btn btn-primary " onClick={ () => reviewRequest("rejected", req?.fromUserId?._id, req?._id)}>Reject </button>
+                <button className="btn btn-primary " onClick={ () => reviewRequest("accepted", req?.fromUserId?._id, req?._id)}>Accept</button>
               </div>
             </div>
           </div>
